@@ -4,6 +4,10 @@
     Author     : edins
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="ModelDAO.ArticuloDAO"%>
+<%@page import="Model.Articulo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,114 +18,100 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <link href="src/css/MyStyle.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     </head>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="src/img/Logo.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
-              CompraPe
-          </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Mis intercambios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Mis Productos</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              
-              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                </svg>
-                Iniciar Sesíon</a>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success"  type="submit">Buscar</button>
-          </form>
-        </div>
-      </div>
-    </nav>
+    
+    <jsp:include page="view/menu.jsp"></jsp:include>
+    
+    
     <body>
-         <div class="container">
+         <div class="container" id="Contenido">
             <h1>Lista de articulos</h1>
             <div class="row row-cols-1 row-cols-md-4 g-4">
+                 <%
+                ArticuloDAO dao = new ArticuloDAO();
+                List<Articulo>list=dao.listar();
+                Iterator<Articulo>iter=list.iterator();
+                Articulo art=null;
+                while(iter.hasNext()){
+                    art=iter.next();
+                
+            %>
+            
               <div class="col">
                 <div class="card h-100">
                   <img src="src/img/teclado01.jpg" class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                      <h5 class="card-title"><%= art.getTituloArticulo()%></h5>
                     
                     <h6><span class="badge bg-secondary">Audifonos</span>
                       <span class="badge bg-secondary">conectores</span>
                       <span class="badge bg-secondary">Cartas</span></h6>
                     <a href="#" class="btn btmintercambiar">Intercambiar</a>
-                    <a href="comprar.html" class="btn btmCompra">S/ 100.00</a>
-
+                    <a href="Controller?accion=intercambiar&codigo=<%= art.getIdArticulo()%>" class="btn btmCompra">S/ 100.00</a>
                   </div>
                 </div>
               </div>
-              <div class="col">
-                <div class="card h-100">
-                  <img src="src/img/teclado01.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    
-                    <h6><span class="badge bg-secondary">Audifonos</span>
-                    <span class="badge bg-secondary">conectores</span>
-                    <span class="badge bg-secondary">Cartas</span></h6>
-                    <a href="#" class="btn btmintercambiar">Intercambiar</a>
-                    <a href="comprar.html" class="btn btmCompra">S/ 100.00</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100">
-                  <img src="src/img/teclado01.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    
-                    <h6><span class="badge bg-secondary">Audifonos</span>
-                      <span class="badge bg-secondary">conectores</span>
-                      <span class="badge bg-secondary">Cartas</span></h6>
-                    <a href="#" class="btn btmintercambiar">Intercambiar</a>
-                    <a href="comprar.html" class="btn btmCompra">S/ 100.00</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card h-100">
-                  <img src="src/img/teclado01.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    
-                    <h6><span class="badge bg-secondary">Audifonos</span>
-                      <span class="badge bg-secondary">conectores</span>
-                      <span class="badge bg-secondary">Cartas</span></h6>
-                    <a href="#" class="btn btmintercambiar">Intercambiar</a>
-                    <a href="comprar.html" class="btn btmCompra">S/ 100.00</a>
-                  </div>
-                </div>
-              </div>
+              
+            <%
+            }
+            %>
             </div>
+            
+           
         </div>
+            
+       
+
+  <!-- Footer -->
+  
+  <jsp:include page="view/footer.jsp"></jsp:include>
+  <!-- Footer -->
+
+        
+<!-- End of .container -->
     </body>
+    
+    <script>
+        function ajax1(){
+            fetch('/CompraPE/Controller?accion=intercambiar')
+    .then(function(response) {
+        // When the page is loaded convert it to text
+        return response.text()
+    })
+    .then(function(html) {
+        // Initialize the DOM parser
+        var parser = new DOMParser();
+
+        // Parse the text
+        var doc = parser.parseFromString(html, "text/html");
+
+        // You can now even select part of that html as you would in the regular DOM 
+        // Example:
+      //var docArticle = doc.querySelector('article').innerHTML;
+
+        console.log(doc);
+        console.log(html);
+        document.getElementById("Contenido").innerHTML = html;
+    })
+    .catch(function(err) {  
+        console.log('Failed to fetch page: ', err);  
+    });
+            
+       /*     
+         fetch('/CompraPE/Controller?accion=intercambiar')
+    .then(function (response) {
+      //console.log(response.body);
+        console.log("entro aqui")
+        console.log(response);
+        console.log(response.text());
+        document.getElementById("Contenido").innerHTML = response.text();
+        
+    })
+    .then(function (body) {
+      //console.log(body);
+        console.log("No entro aqui")
+    });*/
+        }
+    </script>
 </html>
