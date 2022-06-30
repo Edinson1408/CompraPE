@@ -160,6 +160,27 @@ public class ControllerArticulo extends HttpServlet {
             
             if (action.equalsIgnoreCase("updateArticulo")){
                 
+                        int  IdArticulo = Integer.parseInt(request.getParameter("IdArticulo"));
+                        
+                        String NomArticulo = request.getParameter("NomArticulo");
+                        String IdCategoria = request.getParameter("IdCategoria");
+                        String DistritoArticulo = request.getParameter("DistritoArticulo");
+                        String TituloArticulo = request.getParameter("TituloArticulo");
+                        String EstadoArticulo = request.getParameter("EstadoArticulo");
+                        String DescripcionArticulo = request.getParameter("DescripcionArticulo");
+                        //String Imagen = request.getParameter("Imagen");
+                        //String Imagen =request.getParameter("IdUsuario")+request.getParameter("Imagen");
+                        String Imagen =request.getParameter("IdUsuario")+"imagen.jpg";
+                        
+                        int IdUsuario = Integer.parseInt(request.getParameter("IdUsuario"));
+                        
+                        //String id=request.getParameter("idUser");
+                        //int cod = Integer.parseInt(id);
+                        a =new Articulo(IdArticulo, NomArticulo, DescripcionArticulo, DistritoArticulo, DescripcionArticulo, TituloArticulo, EstadoArticulo, DescripcionArticulo, Imagen, IdCategoria, IdUsuario);
+                        //u=new Usuario(cod,Nombres,  Apellidos,  UserName,  Email,  PasswordHash,  Celular,  Distrito,  FechaNacimiento,  Sexo) ;
+                        //ud.edit(u);
+                        dao.edit(a);
+                        
                 request.setAttribute("IdUsuario",request.getParameter("IdUsuario"));       
                 acceso=myArticulo;
             }
