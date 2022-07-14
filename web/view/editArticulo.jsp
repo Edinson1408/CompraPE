@@ -40,7 +40,13 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input class="form-control" id="Apellidos" name="IdCategoria" type="text" placeholder="Categoria" value="${art.getIdCategoria()}">
+                                                <!--<input class="form-control" id="Apellidos" name="IdCategoria" type="text" placeholder="Categoria" value="${art.getIdCategoria()}">-->
+                                                 <select class="form-control" id="Apellidos" name="IdCategoria" type="text" placeholder="Categoria">
+                                                     <option value="1"  >Deporte</option>
+                                                    <option value="2">Instrumento Musical</option>
+                                                    <option value="3">Electronica</option>
+                                                    <option value="4">Juguetes y Juegos</option>
+                                                </select>
                                                 <label for="inputLastName">*Categoria</label>
                                             </div>
                                         </div>

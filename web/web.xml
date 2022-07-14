@@ -12,6 +12,18 @@
         <servlet-name>ControllerArticulo</servlet-name>
         <servlet-class>Controller.ControllerArticulo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControllerIntercambio</servlet-name>
+        <servlet-class>Controller.ControllerIntercambio</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>pruebas</servlet-name>
+        <servlet-class>Controller.pruebas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CMyIntercambio</servlet-name>
+        <servlet-class>Controller.CMyIntercambio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>ControllerArticulo</servlet-name>
         <url-pattern>/ControllerArticulo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerIntercambio</servlet-name>
+        <url-pattern>/ControllerIntercambio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pruebas</servlet-name>
+        <url-pattern>/pruebas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CMyIntercambio</servlet-name>
+        <url-pattern>/CMyIntercambio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

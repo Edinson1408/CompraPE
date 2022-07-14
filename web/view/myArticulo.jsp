@@ -38,7 +38,8 @@
                         Articulo art=null;
                         while(iter.hasNext()){
                             art=iter.next();
-                
+                        int estado=Integer.parseInt(art.getEstado().toString());
+                            
             %>
             
               <div class="col">
@@ -52,9 +53,16 @@
                       <span class="badge bg-secondary">Cartas</span></h6>
                     <a href="Controller?accion=intercambiar&codigo=<%= art.getIdArticulo()%>" class="btn btmCompra">Mensajes</a>
                     
+                    <%
+                        if(estado==1){
+                      
+                        }else {
+                    %>
                     <a href="ControllerArticulo?accion=editarArticulo&codigo=<%= art.getIdArticulo()%>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                     <a href="ControllerArticulo?accion=eliminarArticulo&codigo=<%= art.getIdArticulo()%>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
-                    
+                    <%
+                        }
+                    %>
                     
                   </div>
                 </div>

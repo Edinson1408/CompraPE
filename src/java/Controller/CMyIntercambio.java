@@ -5,28 +5,21 @@
  */
 package Controller;
 
-import Model.Articulo;
-import ModelDAO.ArticuloDAO;
+import ModelDAO.MyIntercambioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.metamodel.SetAttribute;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import Model.Intercambio;
-import ModelDAO.IntercambioDAO;
-
-
+import Model.MyIntercambio;
+import java.util.ArrayList;
 /**
  *
  * @author edins
  */
-public class Controller extends HttpServlet {
+public class CMyIntercambio extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,9 +30,6 @@ public class Controller extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    String Intercambiar="view/intercambiar.jsp";
-    String login="view/login.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -48,10 +38,10 @@ public class Controller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Controller</title>");            
+            out.println("<title>Servlet CMyIntercambio</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Controller at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CMyIntercambio at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -69,60 +59,33 @@ public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String acceso="";
-        String action=request.getParameter("accion");
-        if (action.equalsIgnoreCase("intercambiar")){
-            String id=request.getParameter("codigo");
-            
-            int cod=Integer.parseInt(id);
-            acceso=Intercambiar;
-            ArticuloDAO dao=new ArticuloDAO();
-            Articulo a;
-            ArrayList<Articulo>lista;
-            //Listamos uno 
-            
-            a =new Articulo();
-            a =dao.list(cod);
-            
-            int usuario =a.getIdUsuario();
-            HttpSession sesion=request.getSession(); 
-            //convertir a int
-            int IdUserLog=Integer.parseInt(sesion.getAttribute("SIdUsuario").toString());
-            String userLogeado=null;
-            sesion.setAttribute("userLogeado",null);
-            
-            if(usuario==IdUserLog){
-                /*userLogeado="SI";
-                request.setAttribute("User",userLogeado);
-                sesion.setAttribute("userLogeado","SI");      */
-                sesion.setAttribute("userLogeado","SI");
-                  
-            }
-            IntercambioDAO daoi =new IntercambioDAO();
-            Intercambio i;
-            ArrayList<Intercambio>lista2;   
-            i = new Intercambio();
-            lista2=daoi.ListarMensajes(cod);
+            //processRequest(request, response);
+            String acceso="";
+                String action=request.getParameter("accion");
+                System.out.println("Accion : " + action );
+                
+             if (action.equalsIgnoreCase("MyIntercambios")){
+                acceso="view/myIntercambio.jsp";
+                System.out.println("Accion : MyIntercambios" );
+                 MyIntercambioDAO daoi =new MyIntercambioDAO();
+                 MyIntercambioDAO inter;
+                 ArrayList<MyIntercambio>lista2;   
+                 lista2=daoi.ListaMisIntervambios(10);
+                 request.setAttribute("listaMensaje",lista2);
+                /*
+                 IntercambioDAO daoi =new IntercambioDAO();
+                    Intercambio inter;
+                    ArrayList<Intercambio>lista2;   
+                    inter = new Intercambio();
+                    lista2=daoi.ListarMensajes(cod);
             
             //validamos los si el usuario es el que ingresa
             request.setAttribute("listaMensaje",lista2);
-            request.setAttribute("UserSession",sesion.getAttribute("SIdUsuario").toString());
-            
-            request.setAttribute("art",a);
-            
-            
-            
-            
-           
-        }
-        if(action.equalsIgnoreCase("login")){
-            acceso=login;
-        }
-        
-         RequestDispatcher vista=request.getRequestDispatcher(acceso);
-         vista.forward(request, response);
-        
+                */
+                RequestDispatcher vista=request.getRequestDispatcher(acceso);
+                vista.forward(request, response);
+                  }
+                processRequest(request, response);
     }
 
     /**
@@ -136,15 +99,7 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            //processRequest(request, response);
-            String acceso="";
-            String action=request.getParameter("accion");
-             if(action.equalsIgnoreCase("agregarMensaje")){
-                 
-                 //debemos agregar el intercambio
-                acceso=Intercambiar;
-              }
-            
+        processRequest(request, response);
     }
 
     /**

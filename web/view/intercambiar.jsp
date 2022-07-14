@@ -1,5 +1,11 @@
 
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+ HttpSession sesion=request.getSession(); 
+%>  
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,14 +15,15 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <link href="src/css/MyStyle.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>            -->
     </head>
     <jsp:include page="menu.jsp"></jsp:include>
-    
+ 
      <body>
         <div class="container">
-            <h1>Detalle de compra</h1>
+            <h1>Detalle de Intercambio</h1>
         </div>
 
         <div class="container">
@@ -43,40 +50,82 @@
                           <span class="visually-hidden">Next</span>
                         </button>
                       </div>
-                      <div class="col-md-12">
-                        <div class="accordion accordion-flush container-fluid" id="accordionFlushExample">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    Características destacadas
-                                </button>
-                              </h2>
-                              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-                                  </svg>Fecha de lanzamiento: 28 de enero del 2022 (fecha de entrega puede variar)</div>
-
-                                  <div class="accordion-body"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-                                  </svg>Fecha de lanzamiento: 28 de enero del 2022 (fecha de entrega puede variar)</div>
-                                  <div class="accordion-body"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-                                  </svg>Fecha de lanzamiento: 28 de enero del 2022 (fecha de entrega puede variar)</div>
-                                  <div class="accordion-body"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-                                  </svg>Fecha de lanzamiento: 28 de enero del 2022 (fecha de entrega puede variar)</div>
-                                
-                                
-                                
-                                
-                              </div>
+                    <hr>
+                    <br>
+                    
+                   <!-- <div class="list-group">
+                        <div class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Name user </h5>
+                                <small>3 days ago</small>
                             </div>
-                           
+                        <div class="row">
+                            <div class="col-md-3">
+                            <img src="src/img/teclado01.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-9">
+                                <p class="mb-1">Mensaje del usaurio XD.</p>
+                                <small>Boton de aceptar</small>
+                            </div>
+                        </div>
+                        </div>      
+                    </div>-->
+                    
+                    
+                    
+                    
+                    <!--<div class="card">
+                        <h5 class="card-header">name user</h5>
+                        <div class="card-body">
+                         <div class="row">   
+                           <div class="col-md-3">
+                            <img src="src/img/teclado01.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                          <div class="col-md-9">
+                          <h5 class="card-title">Special title treatment</h5>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
                           </div>
-                            
-                            
-                            
-                      </div>
+                         </div> 
+                        </div>
+                    </div>-->
+                    
+                     <c:choose> 
+                                <c:when test="${empty listaMensaje}">
+                                    <p>No tiene notificaciones</p>
+                                </c:when> 
+                                    <c:otherwise> 
+                                         <c:forEach  var="x" items="${listaMensaje}">
+                                           
+                                           <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <img src="src/img/teclado01.jpg" class="img-fluid rounded-start" alt="...">
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                    <h5 class="card-title">${x.getUsername()}</h5>
+                                                     <small>${x.getFecha()}</small>
+                                                    <p class="card-text">${x.getMensaje()}</p>
+                                                    
+                    
+                                                        <c:choose>
+                                                            <c:when test="${art.getIdUsuario()==UserSession}">
+                                                                <button  class="btn btn-primary" onclick="AceptarInterCambio(${x.getId_interArticulo()},${x.getId_articulo()})">Aceptar</button>
+                                                            </c:when>    
+                                                            <c:otherwise>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                        
+                                                        
+                                                    
+                                                    </div>
+                                                </div>
+                                          </div>
+                                          <br>
+                                        </c:forEach>
+                                    </c:otherwise> 
+                            </c:choose>
+                    
                 </div>
                 <div class="col-md-6">
                     <h2>${art.getTituloArticulo()}</h2>
@@ -102,13 +151,35 @@
                     </div>
                     <hr>
                     <div class="col-md-12">
-                        <button class="btn btmCompra container-fluid"
-                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                       <%  
+                           String esPropietario;
+                             if (sesion.getAttribute("userLogeado")==null){
+                                esPropietario="NO";
+                             }else{
+                                 esPropietario="SI";
+                             }
+                        %>
                         
-                        > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-front" viewBox="0 0 16 16">
-                            <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
-                            <path d="M2 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
-                          </svg> Intercambiar </button>
+                       <% 
+                      
+                       
+                        if(esPropietario.equalsIgnoreCase("NO")) {
+                       
+                        %>
+               
+                            <button class="btn btmCompra container-fluid"
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                > <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-front" viewBox="0 0 16 16">
+                                <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
+                                <path d="M2 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
+                            </svg> Intercambiar </button>
+                          
+                       <% } else{   %>
+                            <button class="btn btmCompra container-fluid"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-front" viewBox="0 0 16 16">
+                                <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
+                                <path d="M2 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"/>
+                            </svg> Propietario </button>
+                       <% } %>
                     </div>
                     
                 </div>
@@ -127,38 +198,36 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form  action="ControllerIntercambio" id="myForm" method="post">
                     <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                      <div id="emailHelp" class="form-text">La direccion donde se realizara el intercambio.</div>
+                      <label for="exampleInputEmail1" class="form-label">Mensaje</label>
+                      <textarea  type="text"  rows="4"   maxlength="100" class="form-control" id="Mensaje" name="Mensaje" aria-describedby="emailHelp"></textarea>
+                      <div id="emailHelp" class="form-text">Mensaje al usuario.</div>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Estado</label>
-                      <select id="disabledSelect" class="form-select">
-                        <option>Nuevo</option>
-                        <option>Seminuevo</option>
-                        <option>Repuesto</option>
+                      <label for="exampleInputPassword1" class="form-label">Estado del producto</label>
+                      <select id="EstadoArticulo" class="form-select" name="EstadoArticulo">
+                        <option value="Nuevo">Nuevo</option>
+                        <option value="Seminuevo" >Seminuevo</option>
+                        <option value="Repuesto" >Repuesto</option>
                       </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Producto de intercambio</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Audifonos</option>
-                            <option>Audifonos</option>
-                            <option>Audifonos</option>
-                          </select>
-                      </div>
+                    <input type="hidden"  name="Id_articulo" value=${art.getIdArticulo()}>
+                    <input type="hidden"  name="IdUsuario" value=<%=sesion.getAttribute("SIdUsuario")%>>
+                    <input type='hidden' name="accion" value="agregarMensaje">
+                    
+                    
                       <div class="mb-3">
                         <label for="formFile" class="form-label">Default file input example</label>
                         <input class="form-control" type="file" id="formFile">
                       </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Enviar">
+                    </div>
                   </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Enviar</button>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -172,5 +241,23 @@
     myModal.addEventListener('shown.bs.modal', function () {
     myInput.focus()
         })
+        
+     
+ 
+        function AceptarInterCambio(idIntercambio,idArticulo){
+            console.log(idIntercambio,idArticulo);
+            $.post("/CompraPE/ControllerIntercambio",
+                {
+                  idArticulo:idArticulo,
+                  accion :"PruebaJson",
+                  idIntercambio:idIntercambio
+                },
+                function(data, status){
+                  alert("Data: " + data + "\nStatus: " + status);
+                });
+                
+        }
+ 
+     
   </script>
 </html>

@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Mis intercambios</a>
+              <a class="nav-link active" aria-current="page" href="CMyIntercambio?accion=MyIntercambios&idUser=<%=sesion.getAttribute("SIdUsuario")%>">Mis intercambios</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="ControllerArticulo?accion=myArticulo&idUser=<%=sesion.getAttribute("SIdUsuario")%>">Mis Productos</a>

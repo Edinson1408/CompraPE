@@ -8,14 +8,23 @@ package Controller;
 import Model.Articulo;
 import ModelDAO.ArticuloDAO;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+
 /**
  *
  * @author edins
@@ -37,6 +46,17 @@ public class ControllerArticulo extends HttpServlet {
     String myArticulo="view/myArticulo.jsp";
     String login="view/login.jsp";
     
+    // Subir directorio de almacenamiento de archivos
+        private static final String UPLOAD_DIRECTORY = "upload";
+ 
+    // Cargar configuración
+        private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3; // 3MB
+        private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
+        private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
+    
+    public class UploadServlet extends HttpServlet {
+        // ...
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -128,6 +148,7 @@ public class ControllerArticulo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
             String acceso="";
             String action=request.getParameter("accion");
             
@@ -136,6 +157,7 @@ public class ControllerArticulo extends HttpServlet {
      
             
             if (action.equalsIgnoreCase("publicarArticulo")) {
+                
                 //vamos a crear los articulos
                         //String Id_articulo =request.getParameter("Id_articulo");
                         String NomArticulo  = request.getParameter("NomArticulo");

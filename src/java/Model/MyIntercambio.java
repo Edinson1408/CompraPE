@@ -9,7 +9,7 @@ package Model;
  *
  * @author edins
  */
-public class Articulo {
+public class MyIntercambio {
     int IdArticulo;
     String NombreArticulo;
     //String fk_categoria;
@@ -21,26 +21,15 @@ public class Articulo {
     String DescripcionArticulo;
     String Imagen;
     String IdCategoria;
-    int idUsuario;
     String Estado;
+    int idUsuario;
+    int Id_interArticulo;
+    String EstadoIntercambio ;
 
-    public Articulo() {
+    public MyIntercambio(){
     }
 
-    /*public Articulo(String NombreArticulo, String FechaCreacionArt, String DistritoArticulo, String PreferenciaArticulo, String TituloArticulo, String EstadoArticulo, String DescripcionArticulo, String Imagen) {
-        this.NombreArticulo = NombreArticulo;
-        this.FechaCreacionArt = FechaCreacionArt;
-        this.DistritoArticulo = DistritoArticulo;
-        this.PreferenciaArticulo = PreferenciaArticulo;
-        this.TituloArticulo = TituloArticulo;
-        this.EstadoArticulo = EstadoArticulo;
-        this.DescripcionArticulo = DescripcionArticulo;
-        this.Imagen = Imagen;
-        this.IdCategoria = IdCategoria;
-        
-    }*/
-
-    public Articulo(int IdArticulo, String NombreArticulo, String FechaCreacionArt, String DistritoArticulo, String PreferenciaArticulo, String TituloArticulo, String EstadoArticulo, String DescripcionArticulo, String Imagen, String IdCategoria, int idUsuario) {
+    public MyIntercambio(int IdArticulo, String NombreArticulo, String FechaCreacionArt, String DistritoArticulo, String PreferenciaArticulo, String TituloArticulo, String EstadoArticulo, String DescripcionArticulo, String Imagen, String IdCategoria, String Estado, int idUsuario, int Id_interArticulo, String EstadoIntercambio) {
         this.IdArticulo = IdArticulo;
         this.NombreArticulo = NombreArticulo;
         this.FechaCreacionArt = FechaCreacionArt;
@@ -51,7 +40,10 @@ public class Articulo {
         this.DescripcionArticulo = DescripcionArticulo;
         this.Imagen = Imagen;
         this.IdCategoria = IdCategoria;
+        this.Estado = Estado;
         this.idUsuario = idUsuario;
+        this.Id_interArticulo = Id_interArticulo;
+        this.EstadoIntercambio = EstadoIntercambio;
     }
 
     public String getEstado() {
@@ -61,23 +53,8 @@ public class Articulo {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    
-    public String getIdCategoria() {
-        return IdCategoria;
-    }
-
-    public void setIdCategoria(String IdCategoria) {
-        this.IdCategoria = IdCategoria;
-    }
+      
+   
 
     public int getIdArticulo() {
         return IdArticulo;
@@ -150,5 +127,39 @@ public class Articulo {
     public void setImagen(String Imagen) {
         this.Imagen = Imagen;
     }
+
+    public String getIdCategoria() {
+        return IdCategoria;
+    }
+
+    public void setIdCategoria(String IdCategoria) {
+        this.IdCategoria = IdCategoria;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getId_interArticulo() {
+        return Id_interArticulo;
+    }
+
+    public void setId_interArticulo(int Id_interArticulo) {
+        this.Id_interArticulo = Id_interArticulo;
+    }
+
+    public String getEstadoIntercambio() {
+        return EstadoIntercambio;
+    }
+
+    public void setEstadoIntercambio(String EstadoIntercambio) {
+        this.EstadoIntercambio = EstadoIntercambio;
+    }
+    
+    
     
 }

@@ -6,7 +6,7 @@
 package ModelDAO;
 
 import Config.Conexion;
-import Interface.CRUD;
+import Interface.ArticuloInterface;
 import Model.Articulo;
 import static com.sun.xml.ws.security.addressing.impl.policy.Constants.logger;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.logging.Level;
  *
  * @author edins
  */
-public class ArticuloDAO implements CRUD{
+public  class ArticuloDAO implements ArticuloInterface{
 
   
     
@@ -35,7 +35,7 @@ public class ArticuloDAO implements CRUD{
     @Override
     public List listar() {
          ArrayList<Articulo>list=new ArrayList<>();
-        String sql="select * from articulo";
+        String sql="select * from articulo where Estado='0'";
         try{
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
@@ -48,6 +48,7 @@ public class ArticuloDAO implements CRUD{
                 art.setEstadoArticulo(rs.getString("EstadoArticulo"));
                 art.setTituloArticulo(rs.getString("TituloArticulo"));
                 art.setIdCategoria(rs.getString("IdCategoria"));
+                art.setEstado(rs.getString("Estado"));
                 list.add(art);
                 
             }
@@ -83,10 +84,12 @@ public class ArticuloDAO implements CRUD{
                 p.setIdUsuario(rs.getShort("IdUsuario"));
                 
                 System.out.println("Accion :"+ ps );
+                System.out.println("Accion :"+ p );
             }
             
         }catch(Exception e){ 
             
+            System.out.println("Accion :"+ ps );
             logger.getLogger(ArticuloDAO.class.getName()).log(Level.SEVERE,null,e);
         }
         
@@ -190,6 +193,7 @@ public class ArticuloDAO implements CRUD{
                 art.setEstadoArticulo(rs.getString("EstadoArticulo"));
                 art.setTituloArticulo(rs.getString("TituloArticulo"));
                 art.setIdCategoria(rs.getString("IdCategoria"));
+                art.setEstado(rs.getString("Estado"));
                 list.add(art);
                 
             }
@@ -220,5 +224,33 @@ public class ArticuloDAO implements CRUD{
         
         return false;
     }
+
+    @Override
+    public boolean updateEstado(int id) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try {
+            String sql="update "
+                    + "  articulo set "
+                    + " Estado=1"
+                    + " where Id_articulo =?;";
+            
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);    
+            ps.setInt(1,id);
+            System.out.println("Accion :"+ ps );
+            ps.executeUpdate();
+            
+            
+            
+        } catch (Exception e) {
+            System.out.println("Accion :"+ ps );
+            logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE,null,e);
+        }
+        
+        return false;
+        
+    }
+
+    
     
 }

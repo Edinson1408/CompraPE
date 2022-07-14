@@ -40,7 +40,13 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input class="form-control" id="Apellidos" name="IdCategoria" type="text" placeholder="Categoria">
+                                                <!--<input class="form-control" id="Apellidos" name="IdCategoria" type="text" placeholder="Categoria">-->
+                                                <select class="form-control" id="Apellidos" name="IdCategoria" type="text" placeholder="Categoria">
+                                                    <option value="1">Deporte</option>
+                                                    <option value="2">Instrumento Musical</option>
+                                                    <option value="3">Electronica</option>
+                                                    <option value="4">Juguetes y Juegos</option>
+                                                </select>
                                                 <label for="inputLastName">*Categoria</label>
                                             </div>
                                         </div>
@@ -99,10 +105,15 @@
 
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control" id="Celular" name="Imagen" type="number" placeholder="file">
-                                                <label for="inputFirstName">*Suba un archivo</label>
-                                            </div>
+                                            <div class="mb-3">
+                                                <label for="formFile" class="form-label">Imagen 1</label>
+                                                <input class="form-control" type="file" id="Imagen" name="file"  >
+                                              </div>
+                                            <!--<div class="form-floating mb-3 mb-md-0">
+                                                <input class="form-control" id="Celular" name="Imagen" type="number" placeholder="file">    
+                                                <label for="formFile" class="form-label">Default file input example</label>
+                                                <input class="form-control" type="file" id="Imagen" name="Imagen">
+                                            </div>-->
                                         </div>
                                     </div>
 
