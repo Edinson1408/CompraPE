@@ -44,7 +44,8 @@
             
               <div class="col">
                 <div class="card h-100">
-                  <img src="src/img/teclado01.jpg" class="card-img-top" alt="...">
+                  <!--<img src="src/img/teclado01.jpg" class="card-img-top" alt="...">-->
+                  <img src="src/files/<%= art.getImagen()%>" class="card-img-top" alt="...">
                   <div class="card-body">
                       <h5 class="card-title"><%= art.getTituloArticulo()%></h5>
                     

@@ -49,6 +49,7 @@ public  class ArticuloDAO implements ArticuloInterface{
                 art.setTituloArticulo(rs.getString("TituloArticulo"));
                 art.setIdCategoria(rs.getString("IdCategoria"));
                 art.setEstado(rs.getString("Estado"));
+                art.setImagen(rs.getString("imagen"));
                 list.add(art);
                 
             }
@@ -194,6 +195,7 @@ public  class ArticuloDAO implements ArticuloInterface{
                 art.setTituloArticulo(rs.getString("TituloArticulo"));
                 art.setIdCategoria(rs.getString("IdCategoria"));
                 art.setEstado(rs.getString("Estado"));
+                art.setImagen(rs.getString("imagen"));
                 list.add(art);
                 
             }

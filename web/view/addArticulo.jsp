@@ -24,8 +24,8 @@
                     <div class="col-lg-7">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Registro de Articulo</h3></div>
-                            <div class="card-body">
-                                <form action="ControllerArticulo" id="myForm" method="post">
+                            <div class="card-body">                              
+                                <form action="ControllerArticulo" id="myForm" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="opc" value="1">
                                     <div>
                                         <h6 style="color: red">${errorMessage}</h6>
@@ -107,7 +107,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="formFile" class="form-label">Imagen 1</label>
-                                                <input class="form-control" type="file" id="Imagen" name="file"  >
+                                                <input class="form-control" type="file" id="Imagen" name="fileImagen"  >
                                               </div>
                                             <!--<div class="form-floating mb-3 mb-md-0">
                                                 <input class="form-control" id="Celular" name="Imagen" type="number" placeholder="file">    
