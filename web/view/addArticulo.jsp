@@ -107,7 +107,8 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="formFile" class="form-label">Imagen 1</label>
-                                                <input class="form-control" type="file" id="Imagen" name="file"  >
+                                                <input class="form-control" type="file" id="Imagen" name="fichero">
+                                                 
                                               </div>
                                             <!--<div class="form-floating mb-3 mb-md-0">
                                                 <input class="form-control" id="Celular" name="Imagen" type="number" placeholder="file">    
