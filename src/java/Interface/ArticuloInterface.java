@@ -19,4 +19,6 @@ public interface ArticuloInterface {
     public boolean delete(int Idart);
     public List ListaArtUsuarui(int id);
     public boolean updateEstado(int id);
+    public boolean updateEstadoTerminado(int IdIntercambio,int idArticulo);
+    
 }

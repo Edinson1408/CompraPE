@@ -37,7 +37,7 @@ public class MyIntercambioDAO implements  MyIntercambioInterface{
 
         String sql="SELECT b.Id_articulo,b.NomArticulo,b.IdCategoria,b.FechaCreacionArt,b.DistritoArticulo,b.PreferenciaArticulo,b.TituloArticulo,b.EstadoArticulo,"
                 + " b.DescripcionArticulo,b.Imagen,b.IdUsuario,b.Estado,a.Id_interArticulo,a.Estado AS EstadoIntercambio "
-                + " FROM intercambioarticulo a inner join articulo b on b.Id_articulo=a.Id_articulo AND b.Estado='1' WHERE a.Estado!='0' AND a.IdUsuario='10'";
+                + " FROM intercambioarticulo a inner join articulo b on b.Id_articulo=a.Id_articulo AND b.Estado!='0' WHERE a.Estado!='0' AND a.IdUsuario='"+IdUsuario+"'";
         try{
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
@@ -59,7 +59,7 @@ public class MyIntercambioDAO implements  MyIntercambioInterface{
                 inter.setImagen(rs.getString("Imagen"));
                 inter.setIdUsuario(rs.getInt("IdUsuario"));
                 inter.setEstado(rs.getString("Estado"));
-                inter.setId_interArticulo(rs.getInt("Id_interArticulo"));
+                inter.setIdArticulo(rs.getInt("Id_articulo"));
                
                 inter.setEstadoIntercambio(rs.getString("EstadoIntercambio"));
                 

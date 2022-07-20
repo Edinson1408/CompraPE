@@ -20,10 +20,19 @@ import Model.Intercambio;
 import Model.MyIntercambio;
 import ModelDAO.IntercambioDAO;
 import com.google.gson.Gson;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Random;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Part;
 /**
  *
  * @author edins
  */
+@MultipartConfig
 public class ControllerIntercambio extends HttpServlet {
 
     /**
@@ -37,6 +46,22 @@ public class ControllerIntercambio extends HttpServlet {
      */
     String Intercambiar="view/intercambiar.jsp";
     String myIntercambio="view/myIntercambio.jsp";
+    
+    
+    // Subir directorio de almacenamiento de archivos
+    private static final String UPLOAD_DIRECTORY = "upload";
+
+    // Cargar configuración
+    private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3; // 3MB
+    private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
+    private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
+
+    //private String pathFiles = "D:\\PROYECTO\\CompraPE\\web\\src\\files\\";
+    private String pathFiles = "C:\\Users\\edins\\OneDrive\\Escritorio\\Web_Integracion\\CompraPE\\web\\src\\files";
+
+    private File uploads = new File(pathFiles);
+    
+    
       private Gson gson = new Gson();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -127,8 +152,11 @@ public class ControllerIntercambio extends HttpServlet {
             if(action.equalsIgnoreCase("agregarMensaje")){                 
                  //debemos agregar el intercambio
 
+                 /*Agrgacion de imagen */
+                 Part part = request.getPart("fileImagen");
+                 
                     String id=request.getParameter("Id_articulo");
-            
+                    
                     int cod=Integer.parseInt(id);
                     acceso=Intercambiar;
                     ArticuloDAO dao=new ArticuloDAO();
@@ -164,7 +192,11 @@ public class ControllerIntercambio extends HttpServlet {
                     String EstadoArticulo=request.getParameter("EstadoArticulo");
                     String Id_articulo =request.getParameter("Id_articulo");
                     int  IdUsuario=Integer.parseInt(request.getParameter("IdUsuario"));
-                    i = new Intercambio(0, Mensaje, "",Id_articulo, EstadoArticulo,  IdUsuario);
+                    
+                    /*recupera imagen*/
+                    String Imagen = saveFile(part, uploads);
+                    System.out.println("imagen :"+ Imagen );
+                    i = new Intercambio(0, Mensaje, "",Id_articulo, EstadoArticulo,  IdUsuario,Imagen);
                     idao.add(i);
                         
                
@@ -229,4 +261,26 @@ public class ControllerIntercambio extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+     private String saveFile(Part part, File pathUploads) {
+        Random rnd = new Random();
+        String pathAbsolute = "";
+
+        try {
+            Path path = Paths.get(part.getSubmittedFileName());
+            String fileNameFull = path.getFileName().toString();
+
+            String fileNameReplace = fileNameFull.replace(" ", "");
+            String fileName = "img_" + rnd.nextInt() + "_" + fileNameReplace;
+            InputStream input = part.getInputStream();
+            if (input != null) {
+                File file = new File(pathUploads, fileName);
+                pathAbsolute = fileName;
+                Files.copy(input, file.toPath());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pathAbsolute;
+    }
 }

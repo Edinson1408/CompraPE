@@ -12,6 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <link href="src/css/MyStyle.css" rel="stylesheet" type="text/css"/>
@@ -32,13 +34,13 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="src/img/teclado.png" class="d-block w-100" alt="...">
+                              <img src="src/img/${art.getImagen()}" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="src/img/teclado01.jpg" class="d-block w-100" alt="...">
+                            <img src="src/img/${art.getImagen()}" class="d-block w-100" alt="...">
                           </div>
                           <div class="carousel-item">
-                            <img src="src/img/teclado03.jpg" class="d-block w-100" alt="...">
+                            <img src="src/img/${art.getImagen()}" class="d-block w-100" alt="...">
                           </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -89,7 +91,8 @@
                          </div> 
                         </div>
                     </div>-->
-                    
+                    <h3 clas="tituloInter">Mensajes</h3>
+                    <br>
                      <c:choose> 
                                 <c:when test="${empty listaMensaje}">
                                     <p>No tiene notificaciones</p>
@@ -97,20 +100,26 @@
                                     <c:otherwise> 
                                          <c:forEach  var="x" items="${listaMensaje}">
                                            
-                                           <div class="col-md-12">
+                                           <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="row">
-                                                    <div class="col-md-3">
-                                                        <img src="src/img/teclado01.jpg" class="img-fluid rounded-start" alt="...">
+                                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                                        <!--<img class='img-fluid' src="src/img/teclado01.jpg"  alt="...">-->
+                                                        
+                                                        <i class="fa-solid fa-user  fa-8x img-fluid"></i>
                                                     </div>
-                                                    <div class="col-md-9">
+                                                    <div class="col-md-9 col-sm-9 col-xs-9">
                                                     <h5 class="card-title">${x.getUsername()}</h5>
                                                      <small>${x.getFecha()}</small>
                                                     <p class="card-text">${x.getMensaje()}</p>
                                                     
-                    
+                                                        <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Open modal</button>-->
+                                                        
+                                                        <i onclick="verimagen('${x.getImg()}')" class="fa-solid fa-image fa-2xl" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                                                        
                                                         <c:choose>
                                                             <c:when test="${art.getIdUsuario()==UserSession}">
                                                                 <button  class="btn btn-primary" onclick="AceptarInterCambio(${x.getId_interArticulo()},${x.getId_articulo()})">Aceptar</button>
+                                                                
                                                             </c:when>    
                                                             <c:otherwise>
                                                             </c:otherwise>
@@ -125,10 +134,10 @@
                                         </c:forEach>
                                     </c:otherwise> 
                             </c:choose>
-                    
+                     <hr>
                 </div>
                 <div class="col-md-6">
-                    <h2>${art.getTituloArticulo()}</h2>
+                    <h2 class="tituloInter">${art.getTituloArticulo()}</h2>
 
                     <div class="col-md-12">
                         <span>Marca</span>
@@ -198,7 +207,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form  action="ControllerIntercambio" id="myForm" method="post">
+                <form  action="ControllerIntercambio" id="myForm" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Mensaje</label>
                       <textarea  type="text"  rows="4"   maxlength="100" class="form-control" id="Mensaje" name="Mensaje" aria-describedby="emailHelp"></textarea>
@@ -218,8 +227,9 @@
                     
                     
                       <div class="mb-3">
-                        <label for="formFile" class="form-label">Default file input example</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <label for="formFile" class="form-label">Cargar Imagen</label>
+                         <input class="form-control" type="file" id="Imagen" name="fileImagen"  >
+                        <!--<input class="form-control" type="file" id="formFile">-->
                       </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -232,9 +242,38 @@
         </div>
       </div>
         
+                    
+                    
+   <!--modal para ver la imagen-->
+   
+   <div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body" id="CuerpoFoto">
+          Modal body..
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+</div>
+   
+                    
   </body>
 
   <script>
+      /*MODAL MENSAJE */
+      
+      var myModalMensaje = document.getElementById('staticBackdropMensaje')
+      myModalMensaje.addEventListener('shown.bs.modal', function () {
+            //myInput.focus()
+        })
+      
     var myModal = document.getElementById('exampleModalToggle2')
     var myInput = document.getElementById('myInput')
 
@@ -253,11 +292,17 @@
                   idIntercambio:idIntercambio
                 },
                 function(data, status){
-                  alert("Data: " + data + "\nStatus: " + status);
+                  //alert("Data: " + data + "\nStatus: " + status);
+                  location.reload();
                 });
                 
         }
  
-     
+    function  verimagen(img){
+          document.getElementById('CuerpoFoto').innerHTML="<img class='img-fluid' src='src/files/"+img+"' alt=''/>"
+          
+         
+     }
   </script>
 </html>
+

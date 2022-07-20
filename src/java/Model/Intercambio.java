@@ -19,17 +19,26 @@ public class Intercambio {
     String Distrito;
     String fecha;
     String username;
-    
+    String img;
     
     public Intercambio() {}
 
-    public Intercambio(int Id_interArticulo, String Mensaje, String Estado, String Id_articulo, String EstadoArticulo, int IdUsuario) {
+    public Intercambio(int Id_interArticulo, String Mensaje, String Estado, String Id_articulo, String EstadoArticulo, int IdUsuario,String img) {
         this.Id_interArticulo = Id_interArticulo;
         this.Mensaje = Mensaje;
         this.Estado = Estado;
         this.Id_articulo = Id_articulo;
         this.EstadoArticulo = EstadoArticulo;
         this.IdUsuario = IdUsuario;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getDistrito() {

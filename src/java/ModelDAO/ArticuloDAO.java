@@ -49,6 +49,7 @@ public  class ArticuloDAO implements ArticuloInterface{
                 art.setTituloArticulo(rs.getString("TituloArticulo"));
                 art.setIdCategoria(rs.getString("IdCategoria"));
                 art.setEstado(rs.getString("Estado"));
+                art.setImagen(rs.getString("imagen"));
                 list.add(art);
                 
             }
@@ -82,6 +83,7 @@ public  class ArticuloDAO implements ArticuloInterface{
                 p.setPreferenciaArticulo(rs.getString("PreferenciaArticulo"));
                 p.setDistritoArticulo(rs.getString("DistritoArticulo"));
                 p.setIdUsuario(rs.getShort("IdUsuario"));
+                p.setImagen(rs.getString("Imagen"));
                 
                 System.out.println("Accion :"+ ps );
                 System.out.println("Accion :"+ p );
@@ -194,6 +196,7 @@ public  class ArticuloDAO implements ArticuloInterface{
                 art.setTituloArticulo(rs.getString("TituloArticulo"));
                 art.setIdCategoria(rs.getString("IdCategoria"));
                 art.setEstado(rs.getString("Estado"));
+                art.setImagen(rs.getString("imagen"));
                 list.add(art);
                 
             }
@@ -249,6 +252,30 @@ public  class ArticuloDAO implements ArticuloInterface{
         
         return false;
         
+    }
+
+    @Override
+    public boolean updateEstadoTerminado(int IdIntercambio, int idArticulo) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          try {
+            String sql="update "
+                    + "  articulo set "
+                    + " Estado=2"
+                    + " where Id_articulo =?;";
+            
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);    
+            ps.setInt(1,idArticulo);
+            System.out.println("Accion :"+ ps );
+            ps.executeUpdate();
+            
+            
+            
+        } catch (Exception e) {
+            System.out.println("Accion :"+ ps );
+            logger.getLogger(ArticuloDAO.class.getName()).log(Level.SEVERE,null,e);
+        }
+        return true;
     }
 
     

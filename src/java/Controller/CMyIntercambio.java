@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Model.MyIntercambio;
 import java.util.ArrayList;
+import com.google.gson.Gson;
+import ModelDAO.ArticuloDAO;
 /**
  *
  * @author edins
@@ -30,6 +32,7 @@ public class CMyIntercambio extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private Gson gson = new Gson();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -67,10 +70,12 @@ public class CMyIntercambio extends HttpServlet {
              if (action.equalsIgnoreCase("MyIntercambios")){
                 acceso="view/myIntercambio.jsp";
                 System.out.println("Accion : MyIntercambios" );
+                 
+                    int IdUsuario=Integer.parseInt(request.getParameter("idUser"));
                  MyIntercambioDAO daoi =new MyIntercambioDAO();
                  MyIntercambioDAO inter;
                  ArrayList<MyIntercambio>lista2;   
-                 lista2=daoi.ListaMisIntervambios(10);
+                 lista2=daoi.ListaMisIntervambios(IdUsuario);
                  request.setAttribute("listaMensaje",lista2);
                 /*
                  IntercambioDAO daoi =new IntercambioDAO();
@@ -99,7 +104,42 @@ public class CMyIntercambio extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+                //processRequest(request, response);
+                ArticuloDAO daoArticulo=new ArticuloDAO();
+                 String action=request.getParameter("accion");
+                  if (action.equalsIgnoreCase("PruebaJson")){
+
+                    String idIntercambio=request.getParameter("idIntercambio");
+                    int idIntercambio_=Integer.parseInt(idIntercambio);
+                    
+                    String idArticulo=request.getParameter("idArticulo");
+                    int idArticulo_=Integer.parseInt(idArticulo);
+                    //Articulo a;
+                    
+                    boolean estado=daoArticulo.updateEstadoTerminado(idIntercambio_, idArticulo_);
+                   //daoIntercambio.updateEstado(idIntercambio_);
+                    /*        int cod=Integer.parseInt(id);
+                            acceso=Intercambiar;
+                            ArticuloDAO dao=new ArticuloDAO();
+                            Articulo a;
+                            ArrayList<Articulo>lista;
+                            //Listamos uno 
+
+                            a =new Articulo();
+                            a =dao.list(cod);
+                        */
+
+                        String employeeJsonString = this.gson.toJson(estado);
+                        PrintWriter out = response.getWriter();
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+                        out.print(employeeJsonString);
+                        out.flush(); 
+                        
+                 
+          
+                    }
+                
     }
 
     /**

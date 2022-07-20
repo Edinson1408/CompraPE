@@ -77,9 +77,9 @@ Conexion cn=new Conexion();
         
          try {
             /*nombre de artilo concatenado con id del usaurio*/
-            //imagen=
-            String sql=" INSERT INTO  intercambioarticulo ( Mensaje, Id_articulo, EstadoArticulo, IdUsuario)"
-                    + " VALUES (?,?,?,?);";
+           
+            String sql=" INSERT INTO  intercambioarticulo ( Mensaje, Id_articulo, EstadoArticulo, IdUsuario,img)"
+                    + " VALUES (?,?,?,?,?);";
             
             con= cn.getConnection();
             ps = con.prepareStatement(sql);    
@@ -87,6 +87,7 @@ Conexion cn=new Conexion();
             ps.setString(2, inter.getId_articulo());
             ps.setString(3, inter.getEstadoArticulo());
             ps.setInt(4, inter.getIdUsuario());
+            ps.setString(5, inter.getImg());
            
             System.out.println("Accion :"+ ps );
             ps.executeUpdate();
@@ -117,7 +118,7 @@ Conexion cn=new Conexion();
            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         ArrayList<Intercambio>list=new ArrayList<>();
         String sql="SELECT a.Id_interArticulo,a.Mensaje,a.Estado,a.FechaCreacioIntArt,a.Id_articulo,a.IdUsuario,b.UserName,"
-                + " a.EstadoArticulo,b.Distrito FROM intercambioarticulo a inner join users b on b.id=a.IdUsuario WHERE A.Id_articulo='"+idArticulo+"'"
+                + " a.EstadoArticulo,b.Distrito,a.img FROM intercambioarticulo a inner join users b on b.id=a.IdUsuario WHERE A.Id_articulo='"+idArticulo+"'"
                 + " order by a.estado DESC ,a.FechaCreacioIntArt DESC;";
         try{
             con=cn.getConnection();
@@ -135,6 +136,8 @@ Conexion cn=new Conexion();
                 inter.setUsername(rs.getString("UserName"));
                 inter.setEstadoArticulo(rs.getString("EstadoArticulo"));
                 inter.setDistrito(rs.getString("Distrito"));
+                inter.setImg(rs.getString("img"));
+                
                 list.add(inter);
                 System.out.println("Accion :"+ ps );
                 System.out.println("Accion :"+ list );

@@ -9,7 +9,7 @@
              >
       <!-- Left -->
       <div class="me-5">
-        <span>Get connected with us on social networks:</span>
+        <span>Nos pueden encontrar en :</span>
       </div>
       <!-- Left -->
 
@@ -46,15 +46,13 @@
           <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <!-- Content -->
-            <h6 class="text-uppercase fw-bold">Company name</h6>
+            <h6 class="text-uppercase fw-bold">COMPRAPE</h6>
             <hr
                 class="mb-4 mt-0 d-inline-block mx-auto"
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
             <p>
-              Here you can use rows and columns to organize your footer
-              content. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit.
+             Nos dedicamos de intermediarios y permitimos conectar entre personas que quieren cambiar sus productos 
             </p>
           </div>
           <!-- Grid column -->
