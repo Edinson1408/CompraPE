@@ -23,7 +23,8 @@ public class Articulo {
     String IdCategoria;
     int idUsuario;
     String Estado;
-
+    String CantidadMensajes;
+    
     public Articulo() {
     }
 
@@ -40,7 +41,7 @@ public class Articulo {
         
     }*/
 
-    public Articulo(int IdArticulo, String NombreArticulo, String FechaCreacionArt, String DistritoArticulo, String PreferenciaArticulo, String TituloArticulo, String EstadoArticulo, String DescripcionArticulo, String Imagen, String IdCategoria, int idUsuario) {
+    public Articulo(int IdArticulo, String NombreArticulo, String FechaCreacionArt, String DistritoArticulo, String PreferenciaArticulo, String TituloArticulo, String EstadoArticulo, String DescripcionArticulo, String Imagen, String IdCategoria, int idUsuario,String CantidadMensajes) {
         this.IdArticulo = IdArticulo;
         this.NombreArticulo = NombreArticulo;
         this.FechaCreacionArt = FechaCreacionArt;
@@ -52,6 +53,7 @@ public class Articulo {
         this.Imagen = Imagen;
         this.IdCategoria = IdCategoria;
         this.idUsuario = idUsuario;
+        this.CantidadMensajes=CantidadMensajes;
     }
 
     public String getEstado() {
@@ -149,6 +151,14 @@ public class Articulo {
 
     public void setImagen(String Imagen) {
         this.Imagen = Imagen;
+    }
+
+    public String getCantidadMensajes() {
+        return CantidadMensajes;
+    }
+
+    public void setCantidadMensajes(String CantidadMensajes) {
+        this.CantidadMensajes = CantidadMensajes;
     }
     
 }

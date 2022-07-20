@@ -3,7 +3,10 @@
     Created on : 15-jun-2022, 22:58:59
     Author     : edins
 --%>
-
+<%
+ HttpSession sesion=request.getSession(); 
+%>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="ModelDAO.ArticuloDAO"%>
@@ -33,6 +36,16 @@
             <!--<h1>Lista de articulos</h1>-->
             <div class="row row-cols-1 row-cols-md-4 g-4">
                  <%
+                     
+                 int UserSession1=0;
+                 if(sesion.getAttribute("SIdUsuario")==null) 
+                 {
+                      UserSession1=0;
+                 }else{
+                     UserSession1=Integer.parseInt(sesion.getAttribute("SIdUsuario").toString());
+                 }
+                
+   
                 ArticuloDAO dao = new ArticuloDAO();
                 List<Articulo>list=dao.listar();
                 Iterator<Articulo>iter=list.iterator();
@@ -40,6 +53,8 @@
                 while(iter.hasNext()){
                     art=iter.next();
                 
+                
+                   
             %>
             
               <div class="col">
@@ -52,8 +67,23 @@
                     <h6><span class="badge bg-secondary">Audifonos</span>
                       <span class="badge bg-secondary">conectores</span>
                       <span class="badge bg-secondary">Cartas</span></h6>
-                    <a href="#" class="btn btmintercambiar">Intercambiar</a>
-                    <a href="Controller?accion=intercambiar&codigo=<%= art.getIdArticulo()%>" class="btn btmCompra">S/ 100.00</a>
+                    <% 
+                        if(art.getIdUsuario()==UserSession1)
+                        {
+                            %>
+                            <a href="Controller?accion=intercambiar&codigo=<%= art.getIdArticulo()%>" class="btn btmCompra">Mensajes</a>
+                       <% 
+                         }
+                       
+                        else {
+                            %>
+                     
+                    <!---<a href="#" class="btn btmintercambiar">Intercambiar</a>-->
+                    <a href="Controller?accion=intercambiar&codigo=<%= art.getIdArticulo()%>" class="btn btmCompra">Intercambiar</a>
+                       <%
+                        }
+                     %>
+
                   </div>
                 </div>
               </div>
@@ -65,17 +95,14 @@
             
            
         </div>
-            
-       
-
-  <!-- Footer -->
+                  
+<!-- End of .container -->
+    </body>
+    
+    <!-- Footer -->
   
   <jsp:include page="view/footer.jsp"></jsp:include>
   <!-- Footer -->
-
-        
-<!-- End of .container -->
-    </body>
     
     <script>
         function ajax1(){

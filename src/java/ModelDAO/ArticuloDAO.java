@@ -50,6 +50,7 @@ public  class ArticuloDAO implements ArticuloInterface{
                 art.setIdCategoria(rs.getString("IdCategoria"));
                 art.setEstado(rs.getString("Estado"));
                 art.setImagen(rs.getString("imagen"));
+                art.setIdUsuario(rs.getInt("IdUsuario"));
                 list.add(art);
                 
             }
@@ -182,7 +183,13 @@ public  class ArticuloDAO implements ArticuloInterface{
     public List ListaArtUsuarui(int id) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         ArrayList<Articulo>list=new ArrayList<>();
-        String sql="select * from articulo where IdUsuario='"+id+"'";
+        //String sql="select a.* from articulo a where a.IdUsuario='"+id+"'";
+        
+        String sql="select a.*,(select count(b.Id_interArticulo) from intercambioarticulo "
+                + " b where b.Id_articulo=a.Id_articulo  )"
+                + " AS cantidadIntercambio from articulo a where a.IdUsuario='"+id+"'";
+        
+        
         try{
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
@@ -197,6 +204,7 @@ public  class ArticuloDAO implements ArticuloInterface{
                 art.setIdCategoria(rs.getString("IdCategoria"));
                 art.setEstado(rs.getString("Estado"));
                 art.setImagen(rs.getString("imagen"));
+                art.setCantidadMensajes(rs.getString("cantidadIntercambio"));
                 list.add(art);
                 
             }

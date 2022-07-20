@@ -186,7 +186,7 @@ public class ControllerArticulo extends HttpServlet {
 
             System.out.println(
                     "Accion " + request.getParameter("IdUsuario"));
-            a = new Articulo(id, NomArticulo, FechaCreacionArt, DistritoArticulo, PreferenciaArticulo, TituloArticulo, EstadoArticulo, DescripcionArticulo, Imagen, IdCategoria, IdUsuario);
+            a = new Articulo(id, NomArticulo, FechaCreacionArt, DistritoArticulo, PreferenciaArticulo, TituloArticulo, EstadoArticulo, DescripcionArticulo, Imagen, IdCategoria, IdUsuario,"");
 
             dao.add(a);
             //te enviara a la pagina de tus artuculos
@@ -214,7 +214,7 @@ public class ControllerArticulo extends HttpServlet {
 
             //String id=request.getParameter("idUser");
             //int cod = Integer.parseInt(id);
-            a = new Articulo(IdArticulo, NomArticulo, DescripcionArticulo, DistritoArticulo, DescripcionArticulo, TituloArticulo, EstadoArticulo, DescripcionArticulo, Imagen, IdCategoria, IdUsuario);
+            a = new Articulo(IdArticulo, NomArticulo, DescripcionArticulo, DistritoArticulo, DescripcionArticulo, TituloArticulo, EstadoArticulo, DescripcionArticulo, Imagen, IdCategoria, IdUsuario,"");
             //u=new Usuario(cod,Nombres,  Apellidos,  UserName,  Email,  PasswordHash,  Celular,  Distrito,  FechaNacimiento,  Sexo) ;
             //ud.edit(u);
             dao.edit(a);

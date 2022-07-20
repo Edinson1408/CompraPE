@@ -49,10 +49,8 @@
                   <div class="card-body">
                       <h5 class="card-title"><%= art.getTituloArticulo()%></h5>
                     
-                    <h6><span class="badge bg-secondary">Audifonos</span>
-                      <span class="badge bg-secondary">conectores</span>
-                      <span class="badge bg-secondary">Cartas</span></h6>
-                    <a href="Controller?accion=intercambiar&codigo=<%= art.getIdArticulo()%>" class="btn btmCompra">Mensajes</a>
+                    
+                    
                     
                     <%
                         if(estado>0  ){
@@ -64,7 +62,7 @@
                     <%
                         }
                     %>
-                    
+                    <a href="Controller?accion=intercambiar&codigo=<%= art.getIdArticulo()%>" class="btn btmCompra"><h6><span class="badge bg-secondary"><%= art.getCantidadMensajes() %></span></h6></a>
                   </div>
                 </div>
               </div>

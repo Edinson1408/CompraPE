@@ -140,8 +140,8 @@
                     <h2 class="tituloInter">${art.getTituloArticulo()}</h2>
 
                     <div class="col-md-12">
-                        <span>Marca</span>
-                        <h3>S/.100</h3>
+                        <!--<span>Marca</span>
+                        <h3>S/.100</h3>-->
                     </div>
                     <hr>
                     <div class="Card">
@@ -150,13 +150,13 @@
                           </svg>  Sin Envio</p>
                         <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
                             <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0V4zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1H0z"/>
-                          </svg> Pago contraentrega</p>
+                          </svg>Intercambio</p>
                     </div>
                     <hr>
                     <div class="col-md-12 bd-callout-danger">
                        <h3>Vendedor</h3>
                        <p>Oscar Gracias ....</p>
-                       <p>Lima  / Lima / El Agustino</p>
+                       <p>Lima  / Lima / ${art.getDistritoArticulo()} </p>
                     </div>
                     <hr>
                     <div class="col-md-12">
